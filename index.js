@@ -10,6 +10,13 @@ const initialMessage = `
 🏆 Игра 📍 Место 🕖 Время
 `;
 
+require('http')
+  .createServer()
+  .listen(process.env.PORT || 5000)
+  .on('request', function (req, res) {
+    res.end('');
+  });
+
 const changeGameSettings = async (settingsText, chatId) => {
   const [gameName = 'КвизПлиз', place = 'Friends', time = '19:15'] = settingsText.split(',');
   let newMessage = chats[chatId]?.initialMessage.replace('Игра', `${gameName.trim()}`);
